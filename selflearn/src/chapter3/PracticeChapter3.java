@@ -19,11 +19,12 @@ public class PracticeChapter3 {
 		System.out.println("問3");
 		System.out.println("endsWithメソッドだけを呼び出すことはできない。\n"
 				+ "変数がnullの場合NullPointerException例外の原因になるため最初にnullチェックを行う。");
-		
+		/** 修正↓
 		String str = null;
 		if(str != null && str.endsWith(".java")) {
 			System.out.println("拡張子は.javaです。");
 		}
+		**/
 		System.out.println("");
 		
 		System.out.println("問4");
