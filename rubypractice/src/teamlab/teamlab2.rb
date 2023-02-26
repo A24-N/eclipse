@@ -19,5 +19,7 @@ l.upto(r) do |i|
   sheep.push("#{i}SHEEP")
 end
 
+
 sheeps = sheep.join
-p sheeps[(x-1)..(x+25)].slice(0..19)
+p sheeps[(x-1)..(x+18)]
+#  .slice(0..19)
