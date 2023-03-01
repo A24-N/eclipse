@@ -1,6 +1,6 @@
 package chapter7;
 
-public class SvopeBlock {
+public class ScopeBlock {
 
 	public static void main(String[] args) {
 		var data = "ローカルスコープ";
