@@ -21,9 +21,5 @@ public class ImmutableFailure {
 		birth2.setDate(15);
 		System.out.println(p2.getBirth());
 	}
-	
-	public static void t() {
-		
-	}
 
 }

@@ -12,7 +12,9 @@ public final class Person3 {
 	public Person3(String name, int age, Date birth) {
 		this.name = name;
 		this.age = age;
-		this.birth = birth;
+//		this.birth = birth; ↓防御的コピー
+		this.birth = new Date(birth.getTime());
+		
 	}
 	
 //	ゲッターメソッド
@@ -25,6 +27,7 @@ public final class Person3 {
 	}
 	
 	public Date getBirth() {
-		return this.birth;
+//		return this.birth;
+		return new Date(this.birth.getTime());
 	}
 }
