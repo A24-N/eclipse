@@ -2,8 +2,8 @@ package chapter8;
 
 public class Person {
 //	フィールドはprivate扱い
-	private String name;
-	private int age;
+	public String name;
+	public int age;
 	
 //	nameフィールドゲッター
 	public String getName() {
