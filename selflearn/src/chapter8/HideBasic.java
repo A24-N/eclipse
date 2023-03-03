@@ -8,6 +8,9 @@ public class HideBasic {
 		System.out.println(bp.birth);
 //		Person.birthフィールドの表示
 		bp.show();
+		
+		Person4 p = new BusinessPerson4();
+		System.out.println(p.birth);
 
 	}
 

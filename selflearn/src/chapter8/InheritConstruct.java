@@ -6,5 +6,7 @@ public class InheritConstruct {
 		@SuppressWarnings("unused")
 		var c = new MyChild("山田");
 	}
+	
+	Person bp = new BusinessPerson();
 
 }
