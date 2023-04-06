@@ -1,6 +1,6 @@
-package progate;
+package progate.java3;
 
-public class Java1_9_person {
+public class Person_9 {
 	
 	public static void hello() {
 		System.out.println("Hello Java");

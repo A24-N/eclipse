@@ -1,6 +1,6 @@
-package progate;
+package progate.java3;
 
-public class Java1_5 {
+public class Main_5 {
 	
 	public static void main (String[] args) {
 		String name = fullName("田中","田");

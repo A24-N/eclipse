@@ -1,6 +1,6 @@
-package progate;
+package progate.java3;
 
-public class Java1_8 {
+public class Main_8 {
 
 	public static void main(String[] args) {
     printData(fullName("Kate", "Jones"), 27, 1.6, 50.0);

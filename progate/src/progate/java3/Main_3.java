@@ -1,6 +1,6 @@
-package progate;
+package progate.java3;
 
-public class Java1_3 {
+public class Main_3 {
 	
 	public static void main(String[] args) {
 		printData("Kate Jones");
