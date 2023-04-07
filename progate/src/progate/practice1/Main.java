@@ -9,7 +9,9 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("名前：");
 		String firstName = scanner.next();
-		System.out.println("名前は" + firstName + "です");
+		System.out.print("名字：");
+		String lastName = scanner.next();
+		System.out.println("名前は" + firstName +" " + lastName + "です");
 		
 	}
 
