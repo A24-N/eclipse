@@ -35,5 +35,9 @@ public class Person_10 {
 		System.out.println("年齢は" + this.age + "歳です");
 		System.out.println("BMIは" + Math.round(this.bmi()) + "です");
 	}
+	
+	public static void printCount() {
+    System.out.println("合計" + Person_10.count + "人です");
+	}
 
 }

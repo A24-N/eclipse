@@ -6,8 +6,8 @@ public class Main_10 {
 		person1.printData();
     Person_10 person2 = new Person_10("John", "Smith", 65, 1.75, 80.0);
     person2.printData();
-    
-    System.out.println("合計" + Person_10.count + "人です");
+    Person_10.printCount();
+
 	}
 
 }
