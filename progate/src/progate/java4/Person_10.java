@@ -2,6 +2,8 @@ package progate.java4;
 
 public class Person_10 {
 	
+	public static int count = 0;
+	
 	public String firstName;
 	public String lastName;
 	public int age;
@@ -9,6 +11,8 @@ public class Person_10 {
 	public double height;
 	
 	public Person_10(String firstName, String lastName, int age, double height, double weight) {
+		
+		Person_10.count ++;
 		
 		this.firstName = firstName;
 		this.lastName = lastName;
