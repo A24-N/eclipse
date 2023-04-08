@@ -5,16 +5,30 @@ public class Person_10 {
 	public static int count = 0;
 	
 	public String firstName;
+	public String middleName;
 	public String lastName;
 	public int age;
 	public double weight;
 	public double height;
 	
-	public Person_10(String firstName, String lastName, int age, double height, double weight) {
+	Person_10(String firstName, String lastName, int age, double height, double weight) {
 		
 		Person_10.count ++;
 		
 		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.height = height;
+		this.weight = weight;
+		
+	}
+	
+	Person_10(String firstName, String middleName, String lastName, int age, double height, double weight) {
+		
+		Person_10.count ++;
+		
+		this.firstName = firstName;
+		this.middleName = middleName;
 		this.lastName = lastName;
 		this.age = age;
 		this.height = height;
