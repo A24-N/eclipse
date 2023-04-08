@@ -2,14 +2,14 @@ package progate.java4;
 
 public class Person_10 {
 	
-	public static int count = 0;
+	private static int count = 0;
 	
-	public String firstName;
-	public String middleName;
-	public String lastName;
-	public int age;
-	public double weight;
-	public double height;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private int age;
+	private double weight;
+	private double height;
 	
 	Person_10(String firstName, String lastName, int age, double height, double weight) {
 		
