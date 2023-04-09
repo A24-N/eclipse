@@ -18,6 +18,13 @@ public class Main {
 	Car car1 = new Car("フェラーリ","赤", 0);
 	System.out.println("【車の情報】");
 	car1.printData();
-	
+	System.out.println("-----------------");
+	System.out.print("走る距離を入力してください：");
+	int carDistance = scanner.nextInt();
+	car1.run(carDistance);
+	System.out.println("-----------------");
+	System.out.print("給油する量を入力してください：");
+	int carCharge = scanner.nextInt();
+	car1.charge(carCharge);
 	}
 }
