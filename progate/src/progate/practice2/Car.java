@@ -1,12 +1,12 @@
 package progate.practice2;
 
-class Bycycle {
+class Car {
 	
 	private String name;
 	private String color;
 	private int distance = 0;
 	
-	public Bycycle(String name, String color, int distance) {
+	public Car(String name, String color, int distance) {
 		this.name = name;
 		this.color = color;
 		this.distance = distance;
@@ -17,15 +17,14 @@ class Bycycle {
 	}
 	
 	public void printData() {
-		System.out.println("【自転車の情報】");
 		System.out.println("名前：" + this.name);
 		System.out.println("色：" + this.color);
-		System.out.println("走行距離：" + this.distance +"km");
+//		System.out.println("走行距離：" + this.distance +"km");
 	}
 	
-	public void run(int bycycleDistance) {
-		this.distance=+ bycycleDistance;
-		System.out.println( bycycleDistance + "km走ります");
+	public void run(int carDistance) {
+		this.distance=+ carDistance;
+		System.out.println( carDistance + "km走ります");
 		System.out.println("走行距離：" + this.distance + "km");
 	}
 
