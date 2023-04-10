@@ -1,9 +1,14 @@
 package progate.java5;
 
-public class Vehicle {
+abstract public class Vehicle {
   private String name;
   private String color;
-  private int distance = 0;
+  protected int distance = 0;
+  
+  public Vehicle(String name, String color) {
+		this.name = name;
+		this.color = color;
+	}
 
   public String getName() {
     return this.name;
@@ -25,4 +30,6 @@ public class Vehicle {
     System.out.println("色：" + this.color);
     System.out.println("走行距離：" + this.distance + "km");
   }
+  
+  abstract public void run(int distance);
 }
