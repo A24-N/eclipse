@@ -4,11 +4,16 @@ abstract public class Vehicle {
   private String name;
   private String color;
   protected int distance = 0;
+  private Person owner;
   
   public Vehicle(String name, String color) {
 		this.name = name;
 		this.color = color;
 	}
+  
+  public Person getOwner() {
+  	return this.owner;
+  }
 
   public String getName() {
     return this.name;
@@ -19,6 +24,11 @@ abstract public class Vehicle {
   public int getDistance() {
     return this.distance;
   }
+  
+  public void setOwner(Person person) {
+  	this.owner = person;
+  }
+  
   public void setName(String name) {
     this.name = name;
   }
