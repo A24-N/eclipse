@@ -2,6 +2,7 @@ package stg;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 public class Shooting {
@@ -21,6 +22,8 @@ public class Shooting {
 		int FPS = 0;
 		int FPSCount = 0;
 		
+		EnumShootingScreen screen = EnumShootingScreen.START;
+		
 		while(loop) {
 			if ((System.currentTimeMillis() - fpsTime) >= 1000) {
 				fpsTime = System.currentTimeMillis();
@@ -35,8 +38,31 @@ public class Shooting {
 			gra.setColor(Color.WHITE);
 			gra.fillRect(0, 0, 500, 500);
 			
-			gra.setColor(Color.BLACK);
-			gra.fillRect(100, 100, 100, 100);
+			switch (screen) {
+			case START:
+				gra.setColor(Color.BLACK);
+				Font font = new Font("SansSerif", Font.PLAIN, 40);
+				gra.setFont(font);
+				FontMetrics metrics = gra.getFontMetrics(font);
+				gra.drawString("Shooting GAME",250 - (metrics.stringWidth("Shooting GAME") / 2) ,80);
+				
+				gra.setColor(Color.BLACK);
+				font = new Font("SansSerif", Font.PLAIN, 15);
+				gra.setFont(font);
+				metrics = gra.getFontMetrics(font);
+				gra.drawString("PRESS SPACE to START",250 - (metrics.stringWidth("PRESS SPACE to START") / 2) ,120);
+				
+				break;
+			case GAME:
+				
+				break;
+			case GAMEOVER:
+				
+				break;
+				
+				
+			}
+			
 			
 			gra.setColor(Color.BLACK);
 			gra.setFont(new Font("SansSerif", Font.PLAIN, 10));
@@ -45,7 +71,10 @@ public class Shooting {
 			shootingFrame.panel.draw();
 			
 			try {
-				Thread.sleep((1000/ fps) - (System.currentTimeMillis() - startTime));
+				Long runTime = System.currentTimeMillis() - startTime;
+				if (runTime < (1000/ fps)) {
+					Thread.sleep((1000/ fps) - (System.currentTimeMillis() - startTime));
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
