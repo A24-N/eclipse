@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 public class Shooting {
 	public static ShootingFrame shootingFrame;
@@ -51,9 +52,14 @@ public class Shooting {
 				gra.setFont(font);
 				metrics = gra.getFontMetrics(font);
 				gra.drawString("PRESS SPACE to START",250 - (metrics.stringWidth("PRESS SPACE to START") / 2) ,120);
+				if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE)) {
+					screen = EnumShootingScreen.GAME;
+				}
 				
 				break;
 			case GAME:
+				gra.setColor(Color.BLACK);
+				gra.fillRect(50, 50, 50, 50);
 				
 				break;
 			case GAMEOVER:
