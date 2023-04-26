@@ -21,7 +21,7 @@ public class Shooting {
 //		FPS
 		long startTime;
 		long fpsTime = 0;
-		int fps = 30;
+		int fps = 60;
 		int FPS = 0;
 		int FPSCount = 0;
 		
@@ -52,6 +52,7 @@ public class Shooting {
 			gra.fillRect(0, 0, 500, 500);
 			
 			switch (screen) {
+			
 			case START:
 				gra.setColor(Color.BLACK);
 				Font font = new Font("SansSerif", Font.PLAIN, 40);
@@ -68,8 +69,10 @@ public class Shooting {
 					screen = EnumShootingScreen.GAME;
 					bullets_player = new ArrayList<>();
 					enemies = new ArrayList<>();
+					bullets_enemy = new ArrayList<>();
 					playerX = 225;
 					playerY = 400;
+					score = 0;
 				}
 				
 				break;
@@ -83,24 +86,43 @@ public class Shooting {
 					Enemy enemy = enemies.get(i);
 					gra.fillRect(enemy.x + 10, enemy.y +10, 10, 10);
 					gra.fillRect(enemy.x, enemy.y, 30, 10);
-					enemy.y += 5;
+					enemy.y += 4;
 					if (enemy.y > 500) {
 						enemies.remove(i);
 						i--;
 					}
+					
+//敵機 当たり判定
+					if (enemy.x >= playerX && enemy.x <= playerX + 30 && 
+							enemy.y >= playerY && enemy.y <= playerY + 20 ||
+							enemy.x + 30 >= playerX && enemy.x + 30 <= playerX + 30 && 
+							enemy.y + 20 >= playerY && enemy.y + 20 <= playerY + 20) {
+						screen = EnumShootingScreen.GAMEOVER;
+					}
+//敵機 弾頻度
 					if (random.nextInt(100) == 1) bullets_enemy.add(new Bullet(enemy.x + 12, enemy.y));
 				}
+				
+//湧き頻度
 				if (random.nextInt(30) == 1) enemies.add(new Enemy(random.nextInt(470), 0));
 				
+//敵の弾
 				for (int i = 0; i < bullets_enemy.size(); i++) {
 					Bullet bullet = bullets_enemy.get(i);
 					gra.setColor(Color.RED);
 					gra.fillRect(bullet.x, bullet.y, 5, 5);
-					bullet.y += 10;
+					bullet.y += 8;
 					if (bullet.y > 500) {
 						bullets_enemy.remove(i);
 						i--;
 					}
+					
+//敵の弾 当たり判定
+					if (bullet.x >= playerX && bullet.x <= playerX + 30 && bullet.y >= playerY && bullet.y <= playerY + 20) {
+						screen = EnumShootingScreen.GAMEOVER;
+					}
+					
+				
 				}
 				
 //自機
@@ -136,7 +158,7 @@ public class Shooting {
 				
 				if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE) && bullet_interval == 0) {
 					bullets_player.add(new Bullet(playerX + 12, playerY));
-					bullet_interval = 12;
+					bullet_interval = 20;
 				}
 				
 				if (bullet_interval > 0) bullet_interval--;
@@ -149,6 +171,26 @@ public class Shooting {
 				
 				break;
 			case GAMEOVER:
+				
+				gra.setColor(Color.BLACK);
+				font = new Font("SansSerif", Font.PLAIN, 50);
+				gra.setFont(font);
+				metrics = gra.getFontMetrics(font);
+				gra.drawString("GAME OVER",250 - (metrics.stringWidth("GAME OVER") / 2) ,80);
+				
+				font = new Font("SansSerif", Font.PLAIN, 30);
+				gra.setFont(font);
+				metrics = gra.getFontMetrics(font);
+				gra.drawString("SCORE:" + score, 250 - (metrics.stringWidth("SCORE:" + score) / 2), 120);
+				
+				font = new Font("SansSerif", Font.PLAIN, 15);
+				gra.setFont(font);
+				metrics = gra.getFontMetrics(font);
+				gra.drawString("PRESS R to Return Start Screen",250 - (metrics.stringWidth("PRESS R to Return Start Screen") / 2) ,160);
+				
+				if (Keyboard.isKeyPressed(KeyEvent.VK_R)) {
+					screen = EnumShootingScreen.START;
+				}
 				
 				break;
 				
