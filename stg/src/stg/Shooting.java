@@ -6,6 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Shooting {
 	public static ShootingFrame shootingFrame;
@@ -29,9 +30,11 @@ public class Shooting {
 		//GAME
 		int playerX = 0, playerY = 0;
 		int bullet_interval = 0;
+		int score = 0;
 		ArrayList<Bullet> bullets_player = new ArrayList<>();
 		ArrayList<Bullet> bullets_enemy = new ArrayList<>();
 		ArrayList<Enemy> enemies = new ArrayList<>();
+		Random random = new Random();
 		
 		
 		
@@ -72,6 +75,35 @@ public class Shooting {
 				break;
 				
 			case GAME:
+
+//敵機
+				gra.setColor(Color.RED);
+				
+				for (int i = 0; i < enemies.size(); i++) {
+					Enemy enemy = enemies.get(i);
+					gra.fillRect(enemy.x + 10, enemy.y +10, 10, 10);
+					gra.fillRect(enemy.x, enemy.y, 30, 10);
+					enemy.y += 5;
+					if (enemy.y > 500) {
+						enemies.remove(i);
+						i--;
+					}
+					if (random.nextInt(100) == 1) bullets_enemy.add(new Bullet(enemy.x + 12, enemy.y));
+				}
+				if (random.nextInt(30) == 1) enemies.add(new Enemy(random.nextInt(470), 0));
+				
+				for (int i = 0; i < bullets_enemy.size(); i++) {
+					Bullet bullet = bullets_enemy.get(i);
+					gra.setColor(Color.RED);
+					gra.fillRect(bullet.x, bullet.y, 5, 5);
+					bullet.y += 10;
+					if (bullet.y > 500) {
+						bullets_enemy.remove(i);
+						i--;
+					}
+				}
+				
+//自機
 				gra.setColor(Color.BLUE);
 				gra.fillRect(playerX + 10, playerY, 10, 10);
 				gra.fillRect(playerX, playerY + 10, 30, 10);
@@ -85,9 +117,18 @@ public class Shooting {
 						bullets_player.remove(i);
 						i--;
 					}
+					
+					for (int l = 0; l < enemies.size(); l++) {
+						Enemy enemy = enemies.get(l);
+						if (bullet.x >= enemy.x && bullet.x <= enemy.x + 30 && bullet.y >= enemy.y && bullet.y <= enemy.y + 20) {
+							enemies.remove(l);
+							bullets_player.remove(i);
+							score += 10;
+						}
+					}
+					
 				}
-				System.out.println(bullets_player.size());
-				
+//移動
 				if (Keyboard.isKeyPressed(KeyEvent.VK_LEFT) && playerX > 0) playerX -= 5;
 				if (Keyboard.isKeyPressed(KeyEvent.VK_RIGHT) && playerX < 455) playerX += 5;
 				if (Keyboard.isKeyPressed(KeyEvent.VK_UP) && playerY > 30) playerY -= 5;
@@ -99,7 +140,13 @@ public class Shooting {
 				}
 				
 				if (bullet_interval > 0) bullet_interval--;
-
+				
+				gra.setColor(Color.BLACK);
+				font = new Font("SansSerif", Font.PLAIN, 20);
+				gra.setFont(font);
+				metrics = gra.getFontMetrics(font);
+				gra.drawString("SCORE:" + score, 470 - metrics.stringWidth("SCORE:" + score), 440);
+				
 				break;
 			case GAMEOVER:
 				
