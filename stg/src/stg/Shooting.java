@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Shooting {
 	public static ShootingFrame shootingFrame;
@@ -25,12 +26,20 @@ public class Shooting {
 		
 		EnumShootingScreen screen = EnumShootingScreen.START;
 		
+		//GAME
+		int playerX = 0, playerY = 0;
+		int bullet_interval = 0;
+		ArrayList<Bullet> bullets_player = new ArrayList<>();
+		ArrayList<Bullet> bullets_enemy = new ArrayList<>();
+		ArrayList<Enemy> enemies = new ArrayList<>();
+		
+		
+		
 		while(loop) {
 			if ((System.currentTimeMillis() - fpsTime) >= 1000) {
 				fpsTime = System.currentTimeMillis();
 				FPS = FPSCount;
 				FPSCount = 0;
-				System.out.println(FPS);
 			}
 			FPSCount ++;
 			
@@ -54,13 +63,43 @@ public class Shooting {
 				gra.drawString("PRESS SPACE to START",250 - (metrics.stringWidth("PRESS SPACE to START") / 2) ,120);
 				if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE)) {
 					screen = EnumShootingScreen.GAME;
+					bullets_player = new ArrayList<>();
+					enemies = new ArrayList<>();
+					playerX = 225;
+					playerY = 400;
 				}
 				
 				break;
-			case GAME:
-				gra.setColor(Color.BLACK);
-				gra.fillRect(50, 50, 50, 50);
 				
+			case GAME:
+				gra.setColor(Color.BLUE);
+				gra.fillRect(playerX + 10, playerY, 10, 10);
+				gra.fillRect(playerX, playerY + 10, 30, 10);
+				
+				for (int i = 0; i < bullets_player.size(); i++) {
+					Bullet bullet = bullets_player.get(i);
+					gra.setColor(Color.BLUE);
+					gra.fillRect(bullet.x, bullet.y, 5, 5);
+					bullet.y -= 10;
+					if (bullet.y < 0) {
+						bullets_player.remove(i);
+						i--;
+					}
+				}
+				System.out.println(bullets_player.size());
+				
+				if (Keyboard.isKeyPressed(KeyEvent.VK_LEFT) && playerX > 0) playerX -= 5;
+				if (Keyboard.isKeyPressed(KeyEvent.VK_RIGHT) && playerX < 455) playerX += 5;
+				if (Keyboard.isKeyPressed(KeyEvent.VK_UP) && playerY > 30) playerY -= 5;
+				if (Keyboard.isKeyPressed(KeyEvent.VK_DOWN) && playerY < 420) playerY += 5;
+				
+				if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE) && bullet_interval == 0) {
+					bullets_player.add(new Bullet(playerX + 12, playerY));
+					bullet_interval = 12;
+				}
+				
+				if (bullet_interval > 0) bullet_interval--;
+
 				break;
 			case GAMEOVER:
 				
