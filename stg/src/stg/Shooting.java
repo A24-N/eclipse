@@ -110,7 +110,7 @@ public class Shooting {
 				}
 				
 //湧き頻度
-				if (random.nextInt(30) == 1) enemies.add(new Enemy(random.nextInt(470), 0));		
+				if (random.nextInt(60) == 1) enemies.add(new Enemy(random.nextInt(470), 0));		
 				
 //敵機2
 				gra.setColor(Color.ORANGE);
@@ -119,7 +119,7 @@ public class Shooting {
 					Enemy2 enemy = enemies2.get(l);
 					gra.fillRect(enemy.x + 10, enemy.y +10, 10, 10);
 					gra.fillRect(enemy.x, enemy.y, 30, 10);
-					if (random.nextInt(100) % 3 == 0) {
+					if (random.nextInt(3) % 3 == 0) {
 						enemy.y += 1;
 						enemy.x += 4;
 					} else {
@@ -144,7 +144,7 @@ public class Shooting {
 				}
 				
 //湧き頻度
-				if (random.nextInt(30) == 1) enemies2.add(new Enemy2(random.nextInt(470), 0));
+				if (random.nextInt(60) == 1) enemies2.add(new Enemy2(random.nextInt(470), 0));
 				
 //敵の弾
 				for (int l = 0; l < bullets_enemy.size(); l++) {
@@ -162,12 +162,19 @@ public class Shooting {
 						screen = EnumShootingScreen.GAMEOVER;
 					}
 					
-//シールド判定
+
+				}
+				
+			//シールド判定
+				for (int l = 0; l < bullets_enemy.size(); l++) {
+					Bullet bullet = bullets_enemy.get(l);
 					if (shield_value > 0) {
 						if (Keyboard.isKeyPressed(KeyEvent.VK_CONTROL)) {
 							gra.setColor(Color.BLUE);
-							gra.fillRect(playerX, playerY - 20, 30, 5);
-							if (bullet.x >= playerX && bullet.x <= playerX + 30 && bullet.y >= playerY - 20) {
+							gra.fillRect(playerX, playerY - 10, 30, 5);
+							gra.fillRect(playerX - 5, playerY - 5, 5, 5);
+							gra.fillRect(playerX + 30, playerY - 5, 5, 5);
+							if (bullet.x >= playerX - 10 && bullet.x <= playerX + 40 && bullet.y >= playerY - 20) {
 								shield_value -= 1;
 								bullets_enemy.remove(l);
 							}
