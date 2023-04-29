@@ -9,21 +9,12 @@ public class Test {
     
     // 入力
     long N = sc.nextLong();
-    
     // 出力
-        if (isPrime(N) == true) {
-            	System.out.print("Yes");
-            } else {
-            	System.out.print("No");
-            }
-}
-	static boolean isPrime(long N) {
-	    // 2 以上の整数 N に対し、N が素数であれば true、素数でなければ false を返す関数
-	    for (long i = 2; i * i <= N; i++) {
-	        if (N % i == 0) {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
+    for (long i = 1; i * i <= N; i++) {
+    	if (N % i == 0) {
+    		System.out.println(i);
+    		if (i != N / i) System.out.println(N / i);
+    	}
+    }
+  }
 }
